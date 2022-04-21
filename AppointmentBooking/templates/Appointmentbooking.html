@@ -1,0 +1,224 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+
+<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
+<link href="{% static 'css/dcalendar.picker.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/jquerysctipttop.css' %}" rel="stylesheet" type="text/css">
+<style>
+  .booking {
+    height: 50px;
+    padding: 2rem;
+  }
+  button {
+    outline: none;
+    border: none;
+    padding: 12px;
+    background: black;
+    color: white;
+  }
+  
+  button:hover{
+    cursor: pointer;
+  }
+  </style>
+{% endblock head %}
+{% block content %}
+
+<section class='d-flex' style='height: 900px; width:100vw;'>
+  <div class='d-flex justify-content-center align-items-center' style='width: 50vw;'>
+    <img src='https://images.unsplash.com/photo-1599847987657-881f11b92a75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fGJlYXV0eXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60' alt='section'>
+  </div>
+  <div class='p-4 d-flex flex-column' style='width: 50vw;'>
+  
+
+<form name='bookingForm' class='booking' method='POST'>
+  {% if messages %}
+  <p class='h3 text-danger'>Something went wrong!</p>
+  {% endif %}
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label"
+      >Full Name</label
+    >
+    <input
+      required
+      id="name"
+      name='name'
+      type="name"
+      class="form-control"
+      placeholder="Enter your name"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label"
+      >Email address</label
+    >
+    <input
+      required
+      id="email"
+      name='email'
+      type="email"
+      class="form-control"
+      placeholder="name@example.com"
+    />
+    <div class="mb-3">
+      <br><label for="exampleFormControlInput1" class="form-label"
+        >Phone number</label
+      ><br>
+      <input
+        required
+        id="numebr"
+        name='number'
+        type="numeber"
+        class="form-control"
+        placeholder="Enter your number"
+      />
+
+  </div>
+  <label>Select service</label>
+  <div class="form-check">
+    <input required class="form-check-input" type="radio" name="service_type" id="service_type1" value="Hair-cut and styling" checked>
+    <label class="form-check-label" htmlFor="service_type1">
+      Hair-cut and styling
+    </label>
+  </div>
+  <div class="form-check">  
+    <input class="form-check-input" type="radio" name="service_type" id="service_type2" value="Massage">
+    <label class="form-check-label" htmlFor="service_type2">
+      Massage
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="service_type" id="service_type3" value="Bridal makeup">
+    <label class="form-check-label" htmlFor="service_type3">
+      Bridal makeup
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="service_type" id="service_type4" value="Tanning">
+    <label class="form-check-label" htmlFor="service_type4">
+      Tanning
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="service_type" id="service_type5" value="Anti-aging services">
+    <label class="form-check-label" htmlFor="service_type5">
+      Anti-aging services
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="service_type" id="service_type6" value="Stretch mark removal">
+    <label class="form-check-label" htmlFor="service_type6">
+      Stretch mark removal
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="service_type" id="service_type7" value="Threading and waxing">
+    <label class="form-check-label" htmlFor="service_type7">
+      Threading and waxing
+    </label>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="service_type" id="service_type8" value="Manicure and pedicure">
+    <label class="form-check-label" htmlFor="service_type8">
+      Manicure and predicure
+    </label>
+  </div>
+<br>
+
+<h1>Appointment Time</h1>
+    {% for message in messages %}
+    <p class='text-danger'>** {{message}} **</p>
+    {% endfor %}
+    <label>
+        <input required type="radio" name='appointment_time' id='appointment_time_1' value="9:00AM"> 
+      9:00AM
+    </label>
+
+    <label>
+        <input type="radio" name='appointment_time' id='appointment_time_2' value="2:00PM">
+      2:00PM
+    </label>
+    <label>
+      <input type="radio" name='appointment_time' id='appointment_time_3' value="4:00PM"> 
+    4:00PM
+  </label>
+  <label>
+    <input type="radio" name='appointment_time' id='appointment_time_4' value="6:00PM"> 
+  6:00PM
+</label>
+<label>
+  <input type="radio" name='appointment_time' id='appointment_time_5' value="8:00PM"> 
+8:00PM
+</label>
+
+<br>
+<label htmlFor='appointment_date' class='d-block'>Select appointment date</label>
+  <input class="form-control" name='appointment_date' id="appointment_date" placeholder="Select Date" />
+  <br>
+ <br>
+ <button id="payment-button">Pay with Khalti</button>
+ <br>
+ <input class="btn btn-dark bg-dark"  value="Submit" type='submit' style="margin-top: 10px">
+</form>
+  
+</div>
+</section>
+<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+<script src="{% static 'js/dcalendar.picker.js' %}"></script>
+<script>
+  $("#appointment_date").dcalendarpicker();
+</script>
+<script>
+  function verifyPayment(payload) {
+    $.ajax({
+        url: "{% url 'verify_payment' %}",
+        type: "POST",
+        data: payload,
+        dataType: 'json',
+        success: function (response) { alert(response) },
+        error: function (error) { alert(error.responseJSON['message']) }
+    });
+}
+  var config = {
+      // replace the publicKey with yours
+      "publicKey": "test_public_key_a71d955a94d14de28c92a63a0b5648e4",
+      "productIdentity": "1234567890",
+      "productName": "Dragon",
+      "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
+      "paymentPreference": [
+          "KHALTI",
+          "EBANKING",
+          "MOBILE_BANKING",
+          "CONNECT_IPS",
+          "SCT",
+          ],
+      "eventHandler": {
+          onSuccess (payload) {
+              // hit merchant api for initiating verfication
+              console.log(payload);
+              verifyPayment(payload)
+          },
+          onError (error) {
+              console.log(error);
+          },
+          onClose () {
+              console.log('widget is closing');
+          }
+      }
+  };
+
+  var checkout = new KhaltiCheckout(config);
+  var btn = document.getElementById("payment-button");
+  btn.addEventListener("click", function(event){
+    event.preventDefault()
+  })
+  btn.onclick = function () {
+      // minimum transaction amount must be 10, i.e 1000 in paisa.
+      checkout.show({amount: 1000});
+  }
+</script>
+
+{% endblock %}

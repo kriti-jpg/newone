@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel='stylesheet' href="{% static 'css/style.css' %}">
+<h3 class="text-center" style="font-weight:bolder"> Login </h3>
+<div class="row justify-content-around" style="padding: 150px;">
+	<form method = "POST">
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-primary" role="alert">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+		{% endif %}
+		{% csrf_token %}
+		<label> Username </label>
+		<input type="text" class="form-control" name="username">
+
+		<label> Password </label>
+		<input type="password" class="form-control" name="password"><br>
+
+		<input type="submit" class="btn btn-primary">
+	</form>
+</div>
+{% endblock content %}

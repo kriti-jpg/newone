@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% comment %} <link rel='stylesheet' href="{% static 'css/style.css' %}">
+<h3 class="text-center"> Welcome </h3> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+<title>Berrie</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% comment %} <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> {% endcomment %}
+{% comment %} <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald"> {% endcomment %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+{% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> {% endcomment %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" />
+  <link rel="stylesheet" href="assets/css/chat.css" />
+
+  <style>
+      
+    #chatting {
+      position: fixed;
+      bottom: 10px;
+      right: 4px;
+      display: none;
+    }
+
+    .text-small {
+      font-size: 0.9rem;
+    }
+
+    .messages-box,
+    .chat-box {
+      height: 510px;
+      overflow-y: scroll;
+    }
+  </style>
+
+<style>
+h1,h2,h3,h4,h5,h6 {font-family: "Oswald"}
+body {font-family: "Open Sans"}
+
+button {
+  outline: none;
+  border: 2px solid black;
+  padding: 12px;
+}
+a{
+  text-decoration: none;
+}
+button:hover{
+  cursor: pointer;
+  {% comment %} background: black;
+  color: white; {% endcomment %}
+}
+
+main{padding-top: 14rem; height: 100vh;  width:100vw; background-image:url('https://firstsight.design/cherie/beauty/wp-content/uploads/2021/09/Heronew.jpg')}
+</style>
+<body class="w3-light-grey">
+
+{% comment %} <!-- Navigation bar with social media icons -->
+<div class="w3-bar w3-black w3-hide-small">
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-facebook-official"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-instagram"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-snapchat"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-flickr"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-twitter"></i></a>
+  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-linkedin"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-right"><i class="fa fa-search"></i></a>
+</div>
+   {% endcomment %}
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1600px">
+ <main class='d-flex flex-column   align-items-center'>
+  {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-primary" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+
+{% endif %}
+    <div class='display-4 text-center' style="margin-bottom:30px; color:white">
+      Always Make Room for a Little Beauty in Your Life
+    </div>
+      <div>
+        <a href='/booking'>
+        <button class='text-white' style='background: black; margin-right:20px'>
+          Book an appointment
+        </button>
+      </a>
+      <a href='/services'>
+        <button style="background-color:white; color:black">
+          View services
+        </button>
+      </a>
+      </div>
+ </main>
+ <section class='d-flex' style='height: 100vh; width:80%; margin:auto; padding:40px 0'>
+  <div class='d-flex justify-content-center align-items-center' style='width: 50vw;'>
+    <img style="height: 80%; width:80%" src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2F1vdp6b4nuhumm16z8q5ux10x-wpengine.netdna-ssl.com%2Fwp-content%2Fuploads%2F2018%2F08%2Fbeauty-salon.jpeg&f=1&nofb=1' alt='section'>
+  </div>
+  <div class='p-4 d-flex flex-column' style='width: 50vw; margin-top: 150px'>
+      <div class='h1' style="font-weight:bolder;margin-bottom:30px">Our Story</div>
+      <p >In Newroad, Nepal, we began as a tiny beauty studio. Our primary goal was to establish the best beauty studio on the planet. Can sacrifices be made in the world's best studio? No, we care about the highest quality, we hire the greatest experts, and we deliver the best customer service. We were able to grow and build an amazing team that is passionate about everything we do as a result of this approach.</p>
+  </div>
+</section>
+ <section class='d-flex' style='height: 100vh; width:100% ; background: white'>
+   <div class='d-flex' style='width:80%; margin:auto; padding:40px 0; '>
+   <div class='p-4 d-flex flex-column' style='width: 50vw; margin-top:150px'>
+     <div class='h1' style="font-weight:bolder;margin-bottom:30px">Our Services available</div>
+     <p >Our beauty box is a set of best full-size products that are top sellers in out online shop. We want you to be able to try everything at once and make sure that our selection of products is about quality, our product just do their job, no compromises. You can subscribe and get our beauty box every month or just buy it once.</p>
+    </div>
+    <div class='d-flex justify-content-center align-items-center' style='width: 50vw;'>
+      <img style="height:80%; width:80%" src='https://images.unsplash.com/photo-1599847987657-881f11b92a75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzJ8fGJlYXV0eXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60' alt='section'>
+    </div>
+  </div>
+</section>
+ {% comment %} 
+    Chat bot
+ {% endcomment %}
+  <!-- Start: Simple Bootstrap Chat -->
+  <div class="chat">
+    <div class="container py-5 px-4" id="chatting">
+      <!-- Chat Box-->
+      <div class="col-12 px-0">
+        <div class="px-4 py-5 chat-box bg-white">
+
+          {% comment %}  CHAT BOT AREA {% endcomment %}
+          <!-- Sender Message-->
+          <div class="media w-50 mb-3">
+            <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
+              class="rounded-circle" />
+            <div class="media-body ml-3">
+              <div class="bg-light rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-muted">
+                  Test which is a new approach all solutions
+                </p>
+              </div>
+              <p class="small text-muted">12:00 PM | Aug 13</p>
+            </div>
+          </div>
+
+          <!-- Reciever Message-->
+          <div class="media w-50 ml-auto mb-3">
+            <div class="media-body">
+              <div class="bg-primary rounded py-2 px-3 mb-2">
+                <p class="text-small mb-0 text-white">
+                  Test which is a new approach to have all solutions
+                </p>
+              </div>
+              <p class="small text-muted">12:00 PM | Aug 13</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typing area -->
+        <form action="/chat" method="/" class="bg-light">
+          <div class="input-group">
+            <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+              class="form-control rounded-0 border-0 py-4 bg-light" />
+            <div class="input-group-append">
+              <button id="button-addon2" type="submit" class="btn btn-link">
+                <i class="fa fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+
+
+
+        {% comment %} chat bot area {% endcomment %}
+      </div>
+    </div>
+  </div>
+  <button onclick="abc()" class="btn btn-danger border rounded-pill" type="button"
+  style="background: rgb(253, 13, 13); font-family: Poppins, sans-serif; position: fixed; bottom:10px; right: 5px">
+  <i class="far fa-comment"></i>&nbsp;Talk to me
+</button>
+
+<script>
+  let chat_tab = document.getElementById("chatting");
+  function abc() {
+    if (chat_tab.style.display === "none") {
+      chat_tab.style.display = "block";
+    } else {
+      chat_tab.style.display = "none";
+    }
+  }
+</script>
+<script>
+  
+  const chatSocket = new WebSocket(
+    'ws://'
+    + window.location.host
+    + '/testChat'
+);
+
+chatSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    console.log(data)
+  };
+
+chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+};
+
+</script>
+</body>
+</html>
+
+
+{% endblock content %}

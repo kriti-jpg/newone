@@ -1,0 +1,64 @@
+
+      {% extends 'base.html' %} {% load static %} {% block head %}
+
+<link href="{% static 'css/dcalendar.picker.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/jquerysctipttop.css' %}" rel="stylesheet" type="text/css">
+
+{% endblock head %}
+
+{% block content %}
+      <style>
+            .content{
+                  display: flex;
+                  width:90%;
+                  margin: auto;
+                  padding: 40px 0
+            }
+      .chat{
+          margin-left:0
+      }
+      h1{
+            font-size: 50px;
+            text-align: center;
+            margin:30px 0;
+      }
+      img{
+            width:80%;
+            padding:20px
+      }
+      .chat_form{
+      text-align:center
+      }
+      .message{
+            height:40px;
+            padding: 10px;
+            margin-bottom: 10px;
+      }
+       
+    </style>
+    <div class="content">
+        <div class="Image">
+              <img src="https://hbr.org/resources/images/article_assets/2020/04/Apr20_23_1063202836.jpg">
+        </div>
+      <div class="chat">
+            <h1>Send us your inquiries! <br>Our bot will help you.</h1>
+            <form class="chat_form" name="chat" method="POST">
+                  {% csrf_token %}
+                  <input 
+                  required
+                  size="50"
+                  id="message"
+                  name='message'
+                  placeholder="Enter your question"
+                  class="message"
+                  type="'text"></input>
+                  <input class="btn btn-dark bg-dark"  value="Send" type='submit'>
+            </form>
+            <h4>{{ result }}</h4>
+      </div>
+</div>
+            
+            
+            <script src="" async defer></script>
+</html>
+{% endblock %}
