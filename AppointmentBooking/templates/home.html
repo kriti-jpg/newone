@@ -131,55 +131,46 @@ and is wrapped around the whole page content, except for the footer in this exam
 
           {% comment %}  CHAT BOT AREA {% endcomment %}
           <!-- Sender Message-->
-          <div class="media w-50 mb-3">
-            <img src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="50"
-              class="rounded-circle" />
-            <div class="media-body ml-3">
-              <div class="bg-light rounded py-2 px-3 mb-2">
-                <p class="text-small mb-0 text-muted">
-                  Test which is a new approach all solutions
-                </p>
-              </div>
-              <p class="small text-muted">12:00 PM | Aug 13</p>
-            </div>
-          </div>
+          <div id="reciever"></div>
+          <div id="sender">
 
+          </div>
+              
           <!-- Reciever Message-->
-          <div class="media w-50 ml-auto mb-3">
-            <div class="media-body">
-              <div class="bg-primary rounded py-2 px-3 mb-2">
-                <p class="text-small mb-0 text-white">
-                  Test which is a new approach to have all solutions
-                </p>
-              </div>
-              <p class="small text-muted">12:00 PM | Aug 13</p>
-            </div>
-          </div>
+          
         </div>
+         
+       <div class="bg-white" style="padding: 3px; align: center">
+        <input type="button" value="appointment" style="background-color: gray;  padding: 3px" onclick="appointment('appointment')">
+        <input type="button" value="Services"  style="background-color: gray;  padding: 3px" onclick="appointment('Services')">      
+          <input type="button" value="who are you"  style="background-color: gray; padding: 3px" onclick="appointment('who are you')">
+         
+        <input type="button" value="Hello"  style="background-color: gray;  padding: 3px" onclick="appointment('hello')">
+        <input type="button" value=" Stretch mark removal"  style="background-color: gray;  padding: 3px" onclick="appointment('Stretch mark removal')">
+        <input type="button" value=" Where is this salon located"  style="background-color: gray;  padding: 3px" onclick="appointment('Where is this salon located')">
 
+       </div>
+       
         <!-- Typing area -->
-        <form action="/chat" method="/" class="bg-light">
-          <div class="input-group">
+        <div class="input-group">
             <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
-              class="form-control rounded-0 border-0 py-4 bg-light" />
+              class="form-control rounded-0 border-0 py-4 bg-light" id="sendMessage" />
             <div class="input-group-append">
-              <button id="button-addon2" type="submit" class="btn btn-link">
+              <button id="button-addon2" type="button" class="btn btn-danger" onclick="sendMessage()">
                 <i class="fa fa-paper-plane"></i>
               </button>
             </div>
           </div>
-        </form>
+     
 
-
+       
 
         {% comment %} chat bot area {% endcomment %}
       </div>
     </div>
   </div>
-  <button onclick="abc()" class="btn btn-danger border rounded-pill" type="button"
-  style="background: rgb(253, 13, 13); font-family: Poppins, sans-serif; position: fixed; bottom:10px; right: 5px">
-  <i class="far fa-comment"></i>&nbsp;Talk to me
-</button>
+  <button onclick="abc()" class="btn btn-danger border rounded-pill" type="button" style="background: red; font-family: Poppins, sans-serif; position: fixed; bottom:10px; right: 5px">
+  <i class="far fa-comment"></i>&nbsp;Talk to me</button>
 
 <script>
   let chat_tab = document.getElementById("chatting");
@@ -192,17 +183,144 @@ and is wrapped around the whole page content, except for the footer in this exam
   }
 </script>
 <script>
-  
-  const chatSocket = new WebSocket(
-    'ws://'
-    + window.location.host
-    + '/testChat'
+
+
+
+
+
+
+ function recieveMessage(data){
+  //create image with src
+  let image = document.createElement('img');
+  image.src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg";
+  image.width = "50"
+
+  //creating and building element
+
+  let wrapper=document.createElement('div')
+  wrapper.className = "media w-50 mb-3";
+
+  let body_wrapper=document.createElement('div')
+  body_wrapper.className = 'media-body ml-3';
+
+  let final_wrapper=document.createElement('div');
+  final_wrapper.className = 'bg-light rounded py-2 px-3 mb-2';
+
+  //Message 
+  let paragraph = document.createElement('p');
+  paragraph.className = 'text-small mb-0 text-muted';
+  paragraph.innerText = data;
+
+  let paragraph2 = document.createElement('p');
+  paragraph2.className = 'small text-muted';
+  paragraph2.innerText = '12:00 PM | Aug 13';
+
+  final_wrapper.appendChild(paragraph)
+  body_wrapper.appendChild(final_wrapper)
+  body_wrapper.appendChild(paragraph2)
+
+  wrapper.appendChild(image)
+  wrapper.appendChild(body_wrapper)
+
+  //Add Message
+  document.getElementById('sender').appendChild(wrapper)
+ }
+
+ const chatSocket = new WebSocket(
+  'ws://'
+  + window.location.host
+  + '/testChat'
 );
 
 chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    console.log(data)
+    recieveMessage(data.message);
   };
+
+  function sendMessage(){ 
+  
+    let x= document.getElementById('sendMessage').value;
+   
+    if(x.length === 0){
+
+    }else{
+      
+    //creating and building element
+  
+    let wrapper=document.createElement('div')
+    wrapper.className = "media w-50 ml-auto mb-3";
+
+    let body_wrapper=document.createElement('div')
+    body_wrapper.className = 'media-body';
+
+    let final_wrapper=document.createElement('div');
+    final_wrapper.className = 'bg-primary rounded py-2 px-3 mb-2';
+
+    //Message 
+    let paragraph = document.createElement('p');
+    paragraph.className = 'text-small mb-0 text-white';
+    paragraph.innerText = x;
+
+    let paragraph2 = document.createElement('p');
+    paragraph2.className = 'small text-muted';
+    paragraph2.innerText = '12:00 PM | Aug 13';
+
+    final_wrapper.appendChild(paragraph)
+    body_wrapper.appendChild(final_wrapper)
+    body_wrapper.appendChild(paragraph2)
+  
+    wrapper.appendChild(body_wrapper)
+    
+
+    //Add Message
+    document.getElementById('sender').appendChild(wrapper)
+    document.getElementById('sendMessage').value= '';
+
+    //send it for la la la 
+    chatSocket.send(JSON.stringify({
+      'message': x
+  }));
+}
+}
+
+
+function appointment(data){
+ 
+    //creating and building element
+  
+    let wrapper=document.createElement('div')
+    wrapper.className = "media w-50 ml-auto mb-3";
+
+    let body_wrapper=document.createElement('div')
+    body_wrapper.className = 'media-body';
+
+    let final_wrapper=document.createElement('div');
+    final_wrapper.className = 'bg-primary rounded py-2 px-3 mb-2';
+
+    //Message 
+    let paragraph = document.createElement('p');
+    paragraph.className = 'text-small mb-0 text-white';
+    paragraph.innerText = data;
+
+    let paragraph2 = document.createElement('p');
+    paragraph2.className = 'small text-muted';
+    paragraph2.innerText = '12:00 PM | Aug 13';
+
+    final_wrapper.appendChild(paragraph)
+    body_wrapper.appendChild(final_wrapper)
+    body_wrapper.appendChild(paragraph2)
+  
+    wrapper.appendChild(body_wrapper)
+    
+
+    //Add Message
+    document.getElementById('sender').appendChild(wrapper)
+    document.getElementById('sendMessage').value= '';
+
+   chatSocket.send(JSON.stringify({
+    'message': data
+}));
+}
 
 chatSocket.onclose = function(e) {
     console.error('Chat socket closed unexpectedly');

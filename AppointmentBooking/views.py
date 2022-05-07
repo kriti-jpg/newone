@@ -24,12 +24,12 @@ def register(request):
 			form.save()
 			messages.success(request,f'Register Successfull')
 			return redirect('register')
-	context = {'form':form}
+	context = {'form':form} #dictionary
 	return render(request,'register.html', context)
 
 
 def login(request):
-	if request.method == "POST":
+	if request.method == "POST": #for form submit
 		username = request.POST['username']
 		password = request.POST['password']
 
@@ -60,15 +60,15 @@ def booking(request):
 		dd = datetime.strptime(appointment_date+'/'+appointment_time, '%m/%d/%Y/%I:%M%p')
 		paid = False
 		if 'paid' in request.COOKIES:
-			paid = request.COOKIES.get('paid')
+			paid = request.COOKIES.get('paid') #To see the payment
 		
 		# print(dd)
 		reserved = Booking.objects.filter(appointment_time=dd)
-		if reserved:
+		if reserved:#To see whether the booking is booked or not
 			messages.error(request,'Sorry, provided schedule is reserved.')
 			return redirect('booking')
 		else:
-			new_booking = Booking.objects.create(
+			new_booking = Booking.objects.create(# create booking
 				name = name,
 				email = email,
 				service_type = service_type,
@@ -80,8 +80,8 @@ def booking(request):
 			return redirect('home')
 
 	return render(request,'Appointmentbooking.html')
-
-@csrf_exempt
+#Khalti App
+@csrf_exempt 
 def verify_payment(request):
    print('Khalti')
    data = request.POST
@@ -112,7 +112,7 @@ def verify_payment(request):
    pp.pprint(response_data)
    
    response = JsonResponse(f"Payment Done !!",safe=False)
-   response.set_cookie('paid', True, max_age=30)
+   response.set_cookie('paid', True, max_age=30) # cookie save data
    return response
 
 def services(request):
