@@ -2,6 +2,14 @@
 {% load static %}
 {% block content %}
 <link rel='stylesheet' href="{% static 'css/style.css' %}">
+<style>
+	li{
+		margin-bottom: 10px;
+	}
+	input{
+		padding: 5px;
+	}
+</style>
 <h1 class="text-center" style="font-weight:bolder"> Register </h1>
 <div class="row justify-content-around" style="padding:120px 0">
 	<form method = "POST">
@@ -14,7 +22,12 @@
 
 		{% endif %}
 		{% csrf_token %}
-		{{ form.as_p }}
+		<ul class="contactList">
+			<li id="subject" class="contact">Username: {{ form.username}}</li>
+			<li id="email" class="contact">Password: {{ form.password1 }}</li>
+			<li id="message" class="contact">Confirm Password: {{ form.password2 }}</li>
+		</ul>
+		<!-- {{ form.as_p }} -->
 
 		<input type="submit" class="btn btn-primary">
 	</form>
