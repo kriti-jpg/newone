@@ -32,16 +32,14 @@
     <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "css/style.css" %}"> {% block head%}{% endblock head %}
   </head>
-  <body style="background: #F6EBE7;">
+  <body style="background: #F6EBE7; height:100vh; width:100vw;overflow-x:hidden">
     {% include 'navbar.html' %} {% block content %} {% endblock content %}
     <footer
       class="d-flex"
       style="
-      bottom: 0px;
-        width: 100vw;
         justify-content: space-around;
         padding: 30px;
-         background: #dfdfdf;
+        background: #dfdfdf;
       "
     >
       <h1 style="width: 25vw; font-size:30px">Berrie</h1>
@@ -57,14 +55,5 @@
         </form>
       </div>
     </footer>
-
-    {% comment %}
-    <script src="jquery-1.11.3.min.js"></script>
-    <script src="dcalendar.picker.js"></script>
-    <script>
-      $("#calendar_datePicker").dcalendarpicker();
-      $("#calendar_datePicker_demo").dcalendar();
-    </script>
-    {% endcomment %}
   </body>
 </html>
